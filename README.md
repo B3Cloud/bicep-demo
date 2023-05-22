@@ -114,3 +114,13 @@
 - Ändra addressPrefix till string (.bicepparam + main.bicep)
 - az deployment sub create --location westeurope --template-file main.bicep --parameters dev.bicepparam
 - az deployment sub create --location westeurope --template-file main.bicep --parameters prod.bicepparam
+
+<br>
+
+## Länkar
+- https://github.com/Azure/bicep
+- https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/learn-bicep
+- https://learn.microsoft.com/en-us/azure/templates/
+- https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming
+- https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations
+- https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules
