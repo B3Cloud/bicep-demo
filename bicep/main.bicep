@@ -1,10 +1,15 @@
 targetScope = 'subscription'
 
+@allowed([
+  'dev'
+  'prod'
+])
+param environment string
 param location string = deployment().location
-param tags object = {}
-param addressPrefix string
+param addressPrefix object
 
-var prefix = 'bicep-demo'
+var prefix = 'bicep-demo-${environment}'
+var tags = { environment: environment }
 
 resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: 'rg-${prefix}-001'
@@ -18,7 +23,7 @@ module vnet 'modules/vnet.bicep' = {
   params: {
     name: 'vnet-${prefix}-001'
     location: location
-    addressPrefix: addressPrefix
+    addressPrefix: addressPrefix[environment]
     subnets: [
       {
         name: 'snet-frontend'
@@ -32,7 +37,7 @@ module vnet 'modules/vnet.bicep' = {
               direction: 'Inbound'
               sourceAddressPrefix: 'Internet'
               sourcePortRange: '*'
-              destinationAddressPrefix: addressPrefix
+              destinationAddressPrefix: addressPrefix[environment]
               destinationPortRange: 443
               protocol: 'Tcp'
             }

@@ -17,7 +17,7 @@
 
 <br>
 
-- var prefix (string interpolation)
+- var prefix (bicep-demo)
 - param tags (object + empty defaultValue)
 - Generate Parameters File (tags environment)
 - Deploy Bicep file
@@ -78,30 +78,28 @@
 
 <br>
 
-<!--
-## Multiple environments
-- Ta bort RG (Bicep har ej livscykelhantering)
+## Multiple environments (single param file)
+- Ta bort RG
 - Lägg till param environment
+- Lägg till param decorator allowed (dev + prod)
+- Ändra var prefix (string interpolation environment)
+- Ändra param tags till var och ta bort ur parameterfil
+- Ändra param addressPrefix till object och uppdatera parameterfil
+- Ändra till addressPrefix[environment] x2
+- Deploy Bicep file (dev)
+- Deploy Bicep file (prod)
 
-- existing
+## Automation (Azure CLI)
+- az logout
+- az login
+- az account set -s 9b184a26-7fff-49ed-9230-d11d484ad51b
+- az deployment sub validate --location westeurope --template-file main.bicep --parameters main.parameters.json
+- az deployment sub what-if --location westeurope --template-file main.bicep --parameters main.parameters.json
+- az deployment sub create --location westeurope --template-file main.bicep --parameters main.parameters.json
 
-- Param decorators
-  - batchSize()
-  - allowedValues()
-  - min/max
+<!-- <br>
 
-
-
-## Deployment
-Azure Account extension
-- Deploy Bicep file (GUI)
-- Azure portal -> Deployments
-- az login + az sub deployment (CLI)
-- Connect-AzAccount + New-AzDeployment (pwsh module)
-- Validate + what-if
-- deploy.ps1 (multi-env + CI/CD)
-
-<br>
-
-https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-functions
-- toLower()
+## Bicep param files (preview)
+- touch main.bicepparam
+- touch bicepconfig.json
+- using -->

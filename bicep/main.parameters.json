@@ -2,13 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "tags": {
-      "value": {
-        "environment": "dev"
-      }
-    },
     "addressPrefix": {
-      "value": "10.0.0.0/24"
+      "value": {
+        "dev": "10.0.0.0/24",
+        "prod": "10.10.0.0/24"
+      }
     }
   }
 }
