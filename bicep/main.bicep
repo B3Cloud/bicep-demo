@@ -6,7 +6,7 @@ targetScope = 'subscription'
 ])
 param environment string
 param location string = deployment().location
-param addressPrefix object
+param addressPrefix string
 
 var prefix = 'bicep-demo-${environment}'
 var tags = { environment: environment }
@@ -23,7 +23,7 @@ module vnet 'modules/vnet.bicep' = {
   params: {
     name: 'vnet-${prefix}-001'
     location: location
-    addressPrefix: addressPrefix[environment]
+    addressPrefix: addressPrefix
     subnets: [
       {
         name: 'snet-frontend'
@@ -37,7 +37,7 @@ module vnet 'modules/vnet.bicep' = {
               direction: 'Inbound'
               sourceAddressPrefix: 'Internet'
               sourcePortRange: '*'
-              destinationAddressPrefix: addressPrefix[environment]
+              destinationAddressPrefix: addressPrefix
               destinationPortRange: 443
               protocol: 'Tcp'
             }

@@ -89,6 +89,8 @@
 - Deploy Bicep file (dev)
 - Deploy Bicep file (prod)
 
+<br>
+
 ## Automation (Azure CLI)
 - az logout
 - az login
@@ -97,9 +99,18 @@
 - az deployment sub what-if --location westeurope --template-file main.bicep --parameters main.parameters.json
 - az deployment sub create --location westeurope --template-file main.bicep --parameters main.parameters.json
 
-<!-- <br>
+<br>
 
 ## Bicep param files (preview)
 - touch main.bicepparam
-- touch bicepconfig.json
-- using -->
+- touch bicepconfig.json (paramsFiles true)
+- using main.bicep
+- param addressPrefix
+- param environment (än så länge inte supporterat att skicka in params inline via CLI)
+- mv main.bicepparam dev.bicepparam
+- cp dev.bicepparam prod.bicepparam
+- rm main.parameters.json
+- Ändra param environment (dev + prod)
+- Ändra addressPrefix till string (.bicepparam + main.bicep)
+- az deployment sub create --location westeurope --template-file main.bicep --parameters dev.bicepparam
+- az deployment sub create --location westeurope --template-file main.bicep --parameters prod.bicepparam
